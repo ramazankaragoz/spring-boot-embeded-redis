@@ -48,6 +48,15 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
+    @CachePut(cacheNames = "student", key = "'student#' + #student.id")
+    @Caching(evict = {
+            @CacheEvict(cacheNames = "student", key = "'student#' + #id"),
+            @CacheEvict(cacheNames = "students", allEntries = true) })
+    public Student  update(Student student)
+    {
+        return studentRepository.save(student);
+    }
+
 
 
 }

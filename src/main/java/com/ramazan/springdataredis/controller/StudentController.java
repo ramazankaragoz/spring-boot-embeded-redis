@@ -38,4 +38,10 @@ public class StudentController {
     {
         studentService.delete(id);
     }
+
+    @RequestMapping(value = "/update",method = RequestMethod.PUT)
+    public @ResponseBody  Student update(@RequestBody Student student)
+    {
+        return studentService.update(student);
+    }
 }
